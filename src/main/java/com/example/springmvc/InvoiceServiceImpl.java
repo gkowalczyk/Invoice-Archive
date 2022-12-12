@@ -21,21 +21,16 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoice.setPrice(new BigDecimal(100));
         invoice.setName("example");
         invoiceList.add(invoice);
-
     }
 
     @Override
     public List<Invoice> getAllInvoice() {
         return invoiceList;
-
-
-
     }
 
     @Override
     public void deleteInvoice(Long id) {
         invoiceList.removeIf(e -> e.getId() == id);
-
     }
 
     @Override
