@@ -1,8 +1,6 @@
-package com.example.springmvc;
+package com.example.springmvc.repository;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import com.example.springmvc.repository.entity.Invoice;
 
 import java.util.List;
 

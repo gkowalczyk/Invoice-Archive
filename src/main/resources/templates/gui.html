@@ -12,67 +12,64 @@
     <title>GUI</title>
 </head>
 <body>
-<h1>Invoice List</h1>
+<h1>Orders list</h1>
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">price</th>
-        <th scope="col">date</th>
-        <th scope="col">name</th>
+        <th scope="col">Total cost</th>
+        <th scope="col">Client</th>
+        <th scope="col">Date</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="invoice:${allInvoices}">
-        <td th:text="${invoice.id}"></td>
-        <td th:text="${invoice.price}"></td>
-        <td th:text="${invoice.localDate}"></td>
-        <td th:text="${invoice.name}"></td>
+    <tr th:each="order:${allOrders}">
+        <td th:text="${order.getFinalPrice()}"></td>
+        <td th:text="${order.getClientName()}"></td>
+        <td th:text="${order.getDate()}"></td>
+           </tr>
+           </tbody>
+       </table>
+       <h1>Add new invoice</h1>
+       <form th:action="@{/save}" method="post">
+           <div class="mb-3">
+               <label for="id" class="form-label">id</label>
+               <input type="text" class="form-control" name="id" id="id">
+           </div>
+           <div class="mb-3">
+               <label for="price" class="form-label">price</label>
+               <input type="text" class="form-control" name="price" id="price">
+           </div>
+           <div class="mb-3">
+               <label for="localDate" class="form-label">date</label>
+               <input type="text" class="form-control" name="localDate" id="localDate">
+           </div>
+           <div class="mb-3">
+               <label for="name" class="form-label">name</label>
+               <input type="text" class="form-control" name="name" id="name">
+           </div>
 
-        <td><a th:href="@{/delete(id=${invoice.id})}" class="btn btn-danger">DELETE</a></td>
-    </tr>
-    </tbody>
-</table>
-<h1>Add new invoice</h1>
-<form th:action="@{/save}" method="post">
-    <div class="mb-3">
-        <label for="id" class="form-label">id</label>
-        <input type="text" class="form-control" name="id" id="id">
-    </div>
-    <div class="mb-3">
-        <label for="price" class="form-label">price</label>
-        <input type="text" class="form-control" name="price" id="price">
-    </div>
-    <div class="mb-3">
-        <label for="localDate" class="form-label">date</label>
-        <input type="text" class="form-control" name="localDate" id="localDate">
-    </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">name</label>
-        <input type="text" class="form-control" name="name" id="name">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+           <button type="submit" class="btn btn-primary">Submit</button>
+       </form>
 
-<h1>Edit invoice</h1>
-<form th:action="@{/edit}" method="get">
-    <div class="mb-3">
-        <label for="id" class="form-label">id</label>
-        <input type="text" class="form-control" name="id" id="id1">
-    </div>
-    <div class="mb-3">
-        <label for="price" class="form-label">price</label>
-        <input type="text" class="form-control" name="price" id="price">
-    </div>
-    <div class="mb-3">
-        <label for="localDate" class="form-label">date</label>
-        <input type="text" class="form-control" name="localDate" id="localDate1">
-    </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">name</label>
-        <input type="text" class="form-control" name="name" id="name1">
-    </div>
-    <button type="submit" class="btn btn-primary">Update</button>
-</form>
-</body>
-</html>
+       <h1>Edit invoice</h1>
+       <form th:action="@{/edit}" method="get">
+           <div class="mb-3">
+               <label for="id" class="form-label">id</label>
+               <input type="text" class="form-control" name="id" id="id1">
+           </div>
+           <div class="mb-3">
+               <label for="price" class="form-label">price</label>
+               <input type="text" class="form-control" name="price" id="price">
+           </div>
+           <div class="mb-3">
+               <label for="localDate" class="form-label">date</label>
+               <input type="text" class="form-control" name="localDate" id="localDate1">
+           </div>
+           <div class="mb-3">
+               <label for="name" class="form-label">name</label>
+               <input type="text" class="form-control" name="name" id="name1">
+           </div>
+           <button type="submit" class="btn btn-primary">Update</button>
+       </form>
+       </body>
+       </html>

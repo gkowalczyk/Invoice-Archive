@@ -1,5 +1,9 @@
-package com.example.springmvc;
+package com.example.springmvc.controller;
 
+import com.example.springmvc.controller.dto.OrderDto;
+import com.example.springmvc.repository.ClientRepo;
+import com.example.springmvc.repository.InvoiceService;
+import com.example.springmvc.repository.entity.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +16,9 @@ import java.util.List;
 
 public class InvoiceController {
 
-    final InvoiceService invoiceService;
+   private final InvoiceService invoiceService;
+   @Autowired
+   private ClientRepo clientRepo;
 
     @Autowired
     public InvoiceController(InvoiceService invoiceService) {
@@ -20,9 +26,9 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public String getAllInvoices(Model model) {
-        List<Invoice> allInvoices = invoiceService.getAllInvoice();
-        model.addAttribute("allInvoices", allInvoices);
+    public String getAllOrders(Model model) {
+        List<OrderDto> allOrders = clientRepo.getAllOrders();
+        model.addAttribute("allOrders", allOrders);
         return "gui";
     }
 
@@ -42,6 +48,5 @@ public class InvoiceController {
     public String editInvoice(@ModelAttribute Invoice invoice) {
         invoiceService.updateInvoice(invoice);
          return "redirect:/";
-
     }
 }
